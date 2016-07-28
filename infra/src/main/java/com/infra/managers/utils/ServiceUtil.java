@@ -3,7 +3,7 @@ package com.infra.managers.utils;
 import com.infra.BuildConfig;
 import com.infra.managers.DataManager;
 import com.infra.managers.requests.Service;
-import com.infra.util.LogUtils;
+import com.infra.logging.util.LogUtils;
 
 import java.io.IOException;
 import java.security.KeyManagementException;

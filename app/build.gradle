@@ -18,6 +18,7 @@ android {
         resConfigs "en" // We're only supporting the English locale, don't add the others to the APK
         project.ext.set("archivesBaseName", "NAPP-" + versionName + "-" + versionCode);
     }
+
     buildTypes {
         release {
             debuggable true
@@ -60,6 +61,11 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'  // butterknife
+        exclude 'META-INF/LICENSE.txt' // commons-lang3-3.4.jar, javax.annotation-api-1.2jar
+    }
 }
 
 ext {
@@ -78,9 +84,6 @@ ext {
      * Make sure to update this one whenever updating the version of retrofit2.
      */
     okHttpLibVersion = '3.2.0'
-
-    /* Library versions */
-    retrofitLibVersion = '2.0.2'
 
     /* Test library versions */
     commonsIoLibVersion = '2.4'
@@ -102,9 +105,6 @@ dependencies {
 
     provided "org.projectlombok:lombok:1.16.8"
 
-    compile "com.squareup.retrofit2:retrofit:${retrofitLibVersion}"
-    compile "com.squareup.retrofit2:converter-gson:${retrofitLibVersion}"
-
     testCompile "junit:junit:${junitLibVersion}"
     testCompile 'org.json:json:20160212'
     testCompile "commons-io:commons-io:${commonsIoLibVersion}"
@@ -113,7 +113,7 @@ dependencies {
     androidTestCompile "junit:junit:${junitLibVersion}"
     androidTestCompile "commons-io:commons-io:${commonsIoLibVersion}"
     androidTestCompile "com.android.support:support-annotations:${supportLibVersion}"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoLibVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoLibVersion}"
     androidTestCompile "org.mockito:mockito-core:1.9.5"
     androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
